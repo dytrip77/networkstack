@@ -3,8 +3,8 @@
 re_descr='DESCR: "([^"]+)"'
 re_sn='SN: ([^[:space:]]+)'
 re_host='hostname ([^"]+)'
- 
-while read -r; do
+
+while IFS= read -r line; do line=${line%$'\r'}
     [[ $REPLY =~ $re_descr ]] && descr=${BASH_REMATCH[1]}
     [[ $REPLY =~ $re_sn ]]    && sn=${BASH_REMATCH[1]}
     [[ $REPLY =~ $re_host ]]  && host=${BASH_REMATCH[1]}
